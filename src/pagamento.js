@@ -7,18 +7,38 @@ class Pagamento {
 
   constructor(metodoDePagamento) {
     this.metodoDePagamento = metodoDePagamento
+    this.aliquota;
   }
 
+  toString() {
+    this.metodoDePagamento + ", " + this.aliquota
+  }
   // Verifica se o metodo de pagamento é válido
   static metodoPagamentoValido(metodoDePagamento) {
     const metodos = Object.keys(Pagamento);
 
-    // Itera sobre os métodos válidos
+    // Itera sobre os métodos válidos.
     for (const metodo of metodos) {
       if (metodoDePagamento == metodo) {
-        return true;
+        const metodoValido = this.aliquotaPagamento(metodoDePagamento)
+        return metodoValido;
       }
     }
     return false;
+  }
+
+  // Calcula a alíquota a ser aplicada na conta.
+  static aliquotaPagamento(metodoDePagamento) {
+    switch (metodoDePagamento) {
+      case "dinheiro":
+        Pagamento.dinheiro.aliquota = 0.95;
+        return Pagamento.dinheiro;
+      case "credito":
+        Pagamento.credito.aliquota = 1.03;
+        return Pagamento.credito;
+      default:
+        Pagamento.debito.aliquota = 1;
+        return Pagamento.debito;
+    }
   }
 }
