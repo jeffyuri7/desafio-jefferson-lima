@@ -1,4 +1,7 @@
 // Enumera os tipos de pagamentos aceitos pela lanchonete
+
+import MetodoPagamentoError from './tratamento_erros.js'
+
 class Pagamento {
   // Cria os tipos de pagamento suportados
   static dinheiro = new Pagamento("dinheiro")
