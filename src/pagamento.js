@@ -27,7 +27,7 @@ class Pagamento {
         return metodoValido;
       }
     }
-    return false;
+    throw new MetodoPagamentoError("Método de Pagamento Inválido!")
   }
 
   // Calcula a alíquota a ser aplicada na conta.
