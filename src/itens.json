@@ -9,7 +9,7 @@
     "codigo" : "chantily",
     "descricao" : "Chantily (extra do Café)",
     "valor" : 1.5,
-    "extra" : true
+    "extra" : "cafe"
   },
   {
     "codigo" : "suco",
@@ -27,7 +27,7 @@
     "codigo" : "queijo",
     "descricao" : "Queijo (extra do Sanduíche)",
     "valor" : 2,
-    "extra" : true
+    "extra" : "sanduiche"
   },
   {
     "codigo" : "salgado",
