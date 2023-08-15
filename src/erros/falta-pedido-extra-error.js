@@ -1,7 +1,7 @@
 class FaltaDePedidoExtraError extends Error {
   constructor(message) {
     super(message);
-    this.name = "FaltaDePedidoExtraError ";
+    this.name = "FaltaDePedidoExtraError";
   }
 }
 
