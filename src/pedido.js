@@ -1,6 +1,7 @@
 import Cardapio from './cardapio.js';
 import Pagamento from './pagamento.js';
 import FaltaDePedidoExtraError from './erros/falta-pedido-extra-error.js';
+import QuantidadeInvalidaError from './erros/quantidade-error.js';
 
 // Cria um novo pedido.
 class Pedido {
@@ -8,7 +9,6 @@ class Pedido {
     this.cardapio = new Cardapio();
     this.metodoDePagamento = Pagamento.metodoPagamentoValido(metodoDePagamento);
     this.itens = itens;
-    this.valor = null;
   }
 
   // Implementa a lógica de cálculo do pedido.
@@ -23,18 +23,25 @@ class Pedido {
       listaItensPedido.push(codigo)
     });
     // Compara os itens do pedido com o cardápio
+    // TODO Lógica de conferência se o item é válido.
     listaItensPedido.forEach(function (item) {
       listaDeItens.forEach(function (itemDoCardapio) {
+        if (item[1] == 0) {
+          throw new QuantidadeInvalidaError("Quantidade inválida!");
+        }
         if (item[0] === itemDoCardapio[0]) {
           if (itemDoCardapio[3]) {
             if (!(listaItensPedido.find(cod => cod[0] === itemDoCardapio[3]))) {
               throw new FaltaDePedidoExtraError("Item extra não pode ser pedido sem o principal");
             }
           }
-          listaFinal.push(itemDoCardapio);
+          let itemListaFinal = Array.from(itemDoCardapio);
+          itemListaFinal.unshift(item[1]);
+          listaFinal.push(itemListaFinal);
         }
       });
     });
+    return listaFinal;
   }
 
   // Valida os itens do pedido
