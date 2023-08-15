@@ -53,6 +53,7 @@ class Pedido {
           itemListaFinal.unshift(item[1]);
           listaFinal.push(itemListaFinal);
         }
+        // TODO Lógica de conferência se o item é válido.
       });
     });
     return listaFinal;
@@ -63,8 +64,6 @@ class Pedido {
     let total = 0;
     let listaFinal = this.validaItens();
     let aliquota = this.metodoDePagamento.aliquota;
-    console.log(aliquota)
-    console.log(listaFinal)
     listaFinal.forEach(function (item) {
       let valor = Number(item[0]) * Number(item[3]) * aliquota;
       total += valor;
