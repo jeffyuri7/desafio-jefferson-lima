@@ -6,5 +6,4 @@ class FaltaItensCarrinhoError extends Error {
   }
 }
 
-
 export default FaltaItensCarrinhoError;

@@ -1,5 +1,3 @@
-// Enumera os tipos de pagamentos aceitos pela lanchonete
-
 import MetodoPagamentoError from './erros/metodo-pagamento.js'
 
 class Pagamento {
@@ -16,10 +14,10 @@ class Pagamento {
   toString() {
     this.metodoDePagamento + ", " + this.aliquota
   }
+
   // Verifica se o metodo de pagamento é válido
   static metodoPagamentoValido(metodoDePagamento) {
     const metodos = Object.keys(Pagamento);
-
     // Itera sobre os métodos válidos.
     for (const metodo of metodos) {
       if (metodoDePagamento == metodo) {

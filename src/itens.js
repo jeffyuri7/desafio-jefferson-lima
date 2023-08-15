@@ -1,3 +1,4 @@
+// Lista de itens do cardápio.
 const dados = [
   {
     "codigo": "cafe",

@@ -33,7 +33,6 @@ class Pedido {
     for (let item of listaItensPedido) {
       encontrado = false;
       for (let itemDoCardapio of listaDeItens) {
-        console.log(item, itemDoCardapio);
         // Verifica se a quantidade é maior ou igual a 1.
         if (item[1] <= 0) {
           throw new QuantidadeInvalidaError("Quantidade inválida!");

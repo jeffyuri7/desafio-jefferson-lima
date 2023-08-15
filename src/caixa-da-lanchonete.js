@@ -13,10 +13,5 @@ class CaixaDaLanchonete {
     }
 
 }
-let caixa = new CaixaDaLanchonete();
-let itens = ['cafe,1', 'chantily,3']
-let resultado = caixa.calcularValorDaCompra("credito", itens);
-console.log(typeof (resultado))
-console.log(resultado);
 
 export { CaixaDaLanchonete };

@@ -6,5 +6,4 @@ class MetodoPagamentoError extends Error {
   }
 }
 
-
 export default MetodoPagamentoError;
