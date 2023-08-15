@@ -69,9 +69,10 @@ class Pedido {
     let listaFinal = this.validaItens();
     let aliquota = this.metodoDePagamento.aliquota;
     listaFinal.forEach(function (item) {
-      let valor = Number(item[0]) * Number(item[3]) * aliquota;
+      let valor = Number(item[0]) * Number(item[3]);
       total += valor;
     });
+    total = total * aliquota;
     return "R$ " + Number.parseFloat(total).toFixed(2).replace(".", ",");
   }
 }
