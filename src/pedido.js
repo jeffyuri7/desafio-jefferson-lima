@@ -19,29 +19,27 @@ class Pedido {
     let listaFinal = [];
     let itensPedido = this.itens;
     let listaDeItens = this.cardapio.itens;
-
+    let encontrado = false;
     // Verifica se há algum item no pedido.
     if (itensPedido == false) {
       throw new FaltaItensCarrinhoError("Não há itens no carrinho de compra!");
     }
-
     // Transforma os itens em um array.
     itensPedido.forEach(function (item) {
       let codigo = item.split(",");
       listaItensPedido.push(codigo)
     });
-
-    console.log(listaItensPedido)
-
-    // Compara os itens do pedido com o cardápio
-    listaItensPedido.forEach(function (item) {
-      listaDeItens.forEach(function (itemDoCardapio) {
+    // Compara as duas listas.
+    for (let item of listaItensPedido) {
+      encontrado = false;
+      for (let itemDoCardapio of listaDeItens) {
+        console.log(item, itemDoCardapio);
         // Verifica se a quantidade é maior ou igual a 1.
         if (item[1] <= 0) {
           throw new QuantidadeInvalidaError("Quantidade inválida!");
         }
         // Compara o item com o cardápio.
-        if (item[0] === itemDoCardapio[0]) {
+        if (item[0] == itemDoCardapio[0]) {
           // Se o item é adicional.
           if (itemDoCardapio[3]) {
             // Verifica se o item principal está no pedido.
@@ -52,10 +50,16 @@ class Pedido {
           let itemListaFinal = Array.from(itemDoCardapio);
           itemListaFinal.unshift(item[1]);
           listaFinal.push(itemListaFinal);
+          encontrado = true;
         }
-        // TODO Lógica de conferência se o item é válido.
-      });
-    });
+      }
+      // Se o item não foi encontrado.
+      if (encontrado) {
+        continue;
+      } else {
+        throw new ItemInvalidoError("Item inválido!");
+      }
+    }
     return listaFinal;
   }
 
