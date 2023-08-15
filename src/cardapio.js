@@ -1,4 +1,4 @@
-import dados from './itens.json' assert { "type": 'json'};
+import dados from './itens.js';
 
 // Cria uma classe que gera o cardápio.
 class Cardapio {
