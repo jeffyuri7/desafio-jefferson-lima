@@ -11,10 +11,6 @@ class Pagamento {
     this.aliquota;
   }
 
-  toString() {
-    this.metodoDePagamento + ", " + this.aliquota
-  }
-
   // Verifica se o metodo de pagamento é válido
   static metodoPagamentoValido(metodoDePagamento) {
     const metodos = Object.keys(Pagamento);
