@@ -13,7 +13,7 @@ class Pedido {
     this.itens = itens;
   }
 
-  // Implementa a lógica de cálculo do pedido.
+  // Faz a validação do pedido.
   validaItens() {
     let listaItensPedido = [];
     let listaFinal = [];
@@ -33,15 +33,15 @@ class Pedido {
     for (let item of listaItensPedido) {
       encontrado = false;
       for (let itemDoCardapio of listaDeItens) {
-        // Verifica se a quantidade é maior ou igual a 1.
+        // Verifica se a quantidade do não é nula ou negativa.
         if (item[1] <= 0) {
           throw new QuantidadeInvalidaError("Quantidade inválida!");
         }
         // Compara o item com o cardápio.
         if (item[0] == itemDoCardapio[0]) {
-          // Se o item é adicional.
+          // Verifica se o item é adicional de outro item principal.
           if (itemDoCardapio[3]) {
-            // Verifica se o item principal está no pedido.
+            // Se for item adicional, verifica se o item principal está no pedido.
             if (!(listaItensPedido.find(cod => cod[0] === itemDoCardapio[3]))) {
               throw new FaltaDePedidoExtraError("Item extra não pode ser pedido sem o principal");
             }
@@ -62,7 +62,7 @@ class Pedido {
     return listaFinal;
   }
 
-  // Valida os itens do pedido
+  // Calcula o valor final do pedido
   calcularPedido() {
     let total = 0;
     let listaFinal = this.validaItens();
@@ -71,6 +71,7 @@ class Pedido {
       let valor = Number(item[0]) * Number(item[3]);
       total += valor;
     });
+    // Aplica a aliquota dependendo da forma de pagamento.
     total = total * aliquota;
     return "R$ " + Number.parseFloat(total).toFixed(2).replace(".", ",");
   }
