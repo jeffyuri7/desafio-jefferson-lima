@@ -17,11 +17,11 @@ class Pagamento {
     // Itera sobre os métodos válidos.
     for (const metodo of metodos) {
       if (metodoDePagamento == metodo) {
-        const metodoValido = this.aliquotaPagamento(metodoDePagamento)
+        const metodoValido = this.aliquotaPagamento(metodoDePagamento);
         return metodoValido;
       }
     }
-    throw new MetodoPagamentoError("Forma de pagamento inválida!")
+    throw new MetodoPagamentoError("Forma de pagamento inválida!");
   }
 
   // Calcula a alíquota a ser aplicada na conta.
