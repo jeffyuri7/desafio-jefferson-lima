@@ -1,5 +1,6 @@
 import { CaixaDaLanchonete } from "./caixa-da-lanchonete.js";
 import Pedido from "./pedido.js";
+import Pagamento from "./pagamento.js";
 
 describe('CaixaDaLanchonete', () => {
 
@@ -83,4 +84,19 @@ describe('Pedido - Lançamento de Exceções', () => {
         ['queijo com outro item', 'debito', 'Item extra não pode ser pedido sem o principal', ['cafe,1', 'queijo,1']],
     ])('compra %p em %p deve resultar em %p', (_, formaDePagamento, resultadoEsperado, itens) =>
         validaTesteExcecao(formaDePagamento, resultadoEsperado, itens));
+});
+
+describe('Pagamento - Lançamento de Exceções', () => {
+
+    const validaTestePagamentoExcecao = (formaDePagamento, resultadoEsperado) => {
+        const pagamento = new Pagamento(formaDePagamento)
+
+        expect(() => pagamento.toThrow(resultadoEsperado));
+    };
+    test.each([
+        ['com forma de pagamento inválida', 'especie', 'Forma de pagamento inválida!', ['cafe, 1']],
+        ['com forma de pagamento inválida', 'cheque', 'Forma de pagamento inválida!', ['suco, 2']],
+        ['com forma de pagamento inválida', 'cartao', 'Forma de pagamento inválida!', ['sanduiche, 2', 'cafe,1']],
+    ])('compra %p em %p deve resultar em %p', (_, formaDePagamento, resultadoEsperado, itens) =>
+        validaTestePagamentoExcecao(formaDePagamento, resultadoEsperado, itens));
 });
