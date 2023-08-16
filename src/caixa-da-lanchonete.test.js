@@ -35,6 +35,8 @@ describe('CaixaDaLanchonete', () => {
 
     test.each([
         ['com quantidade zero', 'dinheiro', 'Quantidade inválida!', ['cafe,0']],
+        // Adicionado teste com quantidade negativa
+        ['com quantidade negativa', 'credito', 'Quantidade inválida!', ['combo1,-2']],
         ['com um valor', 'credito', 'Item inválido!', ['1']],
         ['com código inexistente', 'debito', 'Item inválido!', ['pizza, 1']],
         ['com forma de pagamento inválida', 'especie', 'Forma de pagamento inválida!', ['cafe, 1']],
